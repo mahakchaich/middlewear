@@ -2,6 +2,10 @@ const express =require("express");
 const mysql=require("mysql");
 const dotenv=require('dotenv');
 const  path = require('path');
+var engines = require('consolidate');
+
+
+const session = require('express-session');
 
 
 
@@ -9,9 +13,16 @@ dotenv.config({path:'./.env'});
 
 const app=express();
 
-
-
+app.engine('handlebars', engines.handlebars);
+app.engine('pug', engines.pug);
+app.set('view engine', 'pug');
 app.set('view engine','hbs');
+
+
+
+
+
+
 
 //MySQL 
 const db = mysql.createConnection({
@@ -20,7 +31,14 @@ const db = mysql.createConnection({
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE
  });
-
+ app.use(session({
+  secret:'youtube_video',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+      maxAge: 60 * 1000 * 30
+  }
+}));
 
 
 const publicDirctory =path.join(__dirname,'./public');
