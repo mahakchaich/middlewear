@@ -89,4 +89,8 @@ router.get('/loggout', (req, res, next) => {
     }
 });
 
+router.get('/subscribe',(req,res)=>{
+    res.render('subscribe');
+   });
+
 module.exports = router;
