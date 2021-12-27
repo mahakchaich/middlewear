@@ -1,0 +1,5 @@
+Weather in Mahdia
+20.97°C
+overcast clouds
+Humidity: 53%
+Wind speed: 4.78 km/h

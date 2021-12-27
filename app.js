@@ -12,15 +12,12 @@ const session = require('express-session');
 dotenv.config({path:'./.env'});
 
 const app=express();
+app.use('/public', express.static(__dirname + 'public'));
 
 app.engine('handlebars', engines.handlebars);
 app.engine('pug', engines.pug);
 app.set('view engine', 'pug');
 app.set('view engine','hbs');
-
-
-
-
 
 
 
@@ -57,6 +54,8 @@ db.connect(()=>{
 //Define Route
 app.use('/',require('./routes/pages'));
 app.use('/auth',require('./routes/auth'));
+
+
 
 
 app.listen(5001,() =>{
